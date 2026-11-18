@@ -1,30 +1,35 @@
 # AI-Powered Customer Segmentation & Product Recommendation System
 
-An end-to-end Machine Learning project that analyses customer purchasing behaviour, segments customers using K-Means clustering, and generates personalised product recommendations using item-based collaborative filtering.
+An end-to-end Machine Learning project that analyses customer purchasing behaviour, identifies customer segments using RFM analysis and K-Means clustering, and generates personalised product recommendations using item-based collaborative filtering.
+
+The project also includes an interactive Streamlit dashboard for exploring customer profiles, purchase history, recommendations, and model evaluation results.
 
 ## Project Overview
 
-Businesses need to understand their customers to improve customer engagement, retention, and sales.
+Understanding customer purchasing behaviour helps businesses improve customer engagement, retention, and product discovery.
 
 This project uses historical retail transaction data to:
 
 - Analyse customer purchasing behaviour.
 - Identify customer segments using RFM analysis and K-Means clustering.
-- Recommend relevant products based on purchasing similarities.
+- Generate personalised product recommendations using item-based collaborative filtering.
 - Compare recommendation performance against a popularity-based baseline.
-- Present customer insights through an interactive Streamlit dashboard.
+- Visualise customer insights through an interactive Streamlit dashboard.
 
 ## Technologies Used
 
-- **Programming:** Python
-- **Data Analysis:** Pandas, NumPy
-- **Data Visualisation:** Matplotlib, Seaborn, Plotly
-- **Machine Learning:** Scikit-learn
-- **Recommendation System:** Item-Based Collaborative Filtering
-- **Clustering:** K-Means
-- **Dashboard:** Streamlit
-- **Model Storage:** Joblib
-- **Development Environment:** Jupyter Notebook, VS Code
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Data Analysis | Pandas, NumPy |
+| Data Visualisation | Matplotlib, Seaborn, Plotly |
+| Machine Learning | Scikit-learn |
+| Customer Segmentation | K-Means Clustering |
+| Recommendation System | Item-Based Collaborative Filtering |
+| Similarity Measurement | Cosine Similarity |
+| Dashboard | Streamlit |
+| Model Storage | Joblib |
+| Development Environment | Jupyter Notebook, VS Code |
 
 ## Dataset
 
@@ -34,30 +39,34 @@ Source: https://archive.ics.uci.edu/dataset/352/online+retail
 
 The dataset contains transactions from a UK-based online retail store between December 2010 and December 2011.
 
-Original dataset:
+**Original dataset:**
 - 541,909 transaction records
 - 8 columns
 - 4,372 unique customers
 
-After data cleaning:
+**After data cleaning:**
 - 392,692 transaction records
 - 4,338 unique customers
 - 3,665 unique products
+
+The original dataset is not included in this repository.
 
 ## Project Workflow
 
 ### 1. Data Cleaning
 
-Performed:
-- Duplicate removal.
+The following preprocessing operations were performed:
+
+- Duplicate transaction removal.
 - Cancellation transaction removal.
 - Missing Customer ID removal.
-- Invalid quantity and price filtering.
-- Total transaction value calculation.
+- Invalid quantity and unit price filtering.
+- Calculation of total transaction value.
 
 ### 2. Exploratory Data Analysis
 
-Analysed:
+Explored customer and product purchasing patterns through:
+
 - Customer purchasing behaviour.
 - Top-selling products.
 - Revenue by country.
@@ -66,36 +75,39 @@ Analysed:
 
 ### 3. RFM Analysis
 
-Created three customer features:
+Customer behaviour was analysed using three features:
 
-- **Recency:** Days since the customer's latest purchase.
-- **Frequency:** Number of distinct invoices.
-- **Monetary:** Total customer spending.
+- **Recency:** Number of days since the customer's latest purchase.
+- **Frequency:** Number of distinct invoices associated with the customer.
+- **Monetary:** Total amount spent by the customer.
 
-Applied log transformation and StandardScaler to prepare the features for clustering.
+Log transformation and StandardScaler were applied to prepare the RFM features for clustering.
 
 ### 4. Customer Segmentation Using K-Means
 
-Implemented K-Means clustering with four customer segments:
+K-Means clustering was implemented with four customer segments.
 
-| Segment | Customers | Percentage |
+| Customer Segment | Customers | Percentage |
 |---|---:|---:|
 | Champions | 713 | 16.44% |
 | At-Risk Customers | 1,622 | 37.39% |
 | Recent Customers | 837 | 19.29% |
 | Regular Customers | 1,166 | 26.88% |
+| **Total** | **4,338** | **100%** |
 
-These segments support different business strategies, including loyalty rewards, customer re-engagement, repeat-purchase campaigns, and complementary product promotions.
+These segments help identify different customer behaviours and support targeted business strategies such as loyalty rewards, customer re-engagement, repeat-purchase campaigns, and complementary product promotions.
 
 ### 5. Product Recommendation System
 
-Developed an item-based collaborative filtering recommendation engine.
+An item-based collaborative filtering recommendation engine was developed.
 
 The system:
-- Creates a customer-product interaction matrix.
-- Uses cosine similarity to identify related products.
-- Generates recommendations based on a customer's purchase history.
-- Excludes products already purchased by the customer.
+
+1. Creates a customer-product interaction matrix.
+2. Uses cosine similarity to identify related products.
+3. Finds products similar to items in a customer's purchase history.
+4. Generates personalised product recommendations.
+5. Excludes products already purchased by the customer.
 
 Recommendation scores represent accumulated similarity scores, not purchase probabilities.
 
@@ -103,9 +115,13 @@ Recommendation scores represent accumulated similarity scores, not purchase prob
 
 #### Recommendation System Evaluation
 
-Used a chronological train-test split, with 9 November 2011 as the split date.
+A chronological train-test split was used to reduce data leakage.
 
-Evaluated the collaborative filtering model against a popularity-based baseline using a sample of 300 eligible customers.
+- **Training period:** 1 December 2010 – 8 November 2011
+- **Testing period:** 9 November 2011 – 9 December 2011
+- **Evaluation sample:** 300 eligible customers
+
+The collaborative filtering model was compared against a popularity-based baseline.
 
 | Metric | Collaborative Filtering | Popularity Baseline |
 |---|---:|---:|
@@ -113,22 +129,26 @@ Evaluated the collaborative filtering model against a popularity-based baseline 
 | Recall@5 | 2.95% | 1.07% |
 | Catalogue Coverage | 11.81% | 0.80% |
 
-Collaborative filtering outperformed the popularity baseline across all three metrics. However, the absolute recommendation scores remain low, leaving room for improvement.
+Collaborative filtering outperformed the popularity baseline across all three evaluation metrics.
 
-#### K-Means Evaluation
+However, the absolute precision and recall values remain relatively low, indicating opportunities for further improvement.
 
-| Metric | Result |
+#### K-Means Clustering Evaluation
+
+| Evaluation Metric | Result |
 |---|---:|
 | Number of Clusters | 4 |
 | Silhouette Score | 0.3375 |
 | Davies-Bouldin Index | 1.0086 |
-| Calinski-Harabasz Score | 3328.34 |
+| Calinski-Harabasz Score | 3,328.34 |
 
-Four clusters were retained for business interpretability, although the two-cluster solution achieved a higher silhouette score.
+Four clusters were retained for business interpretability, although the two-cluster solution achieved a higher silhouette score of approximately 0.433.
 
 ## Streamlit Dashboard
 
-Developed an interactive dashboard featuring:
+An interactive dashboard was developed using Streamlit.
+
+**Dashboard features:**
 
 - Overall customer and product statistics.
 - Customer ID-based search.
@@ -136,14 +156,16 @@ Developed an interactive dashboard featuring:
 - Customer segment identification.
 - Personalised product recommendations.
 - Recent purchase history.
-- Customer segment distribution charts.
-- Revenue contribution analysis.
-- Model performance comparison.
+- Customer segment distribution.
+- Revenue contribution by segment.
+- Average spending, purchase frequency, and recency analysis.
+- Recommendation model performance comparison.
+- K-Means evaluation metrics.
 
 ## Project Structure
 
 ```text
-AI Customer Segmentation/
+ai-customer-segmentation-recommendation/
 │
 ├── dataset/
 │   └── Online Retail.xlsx
@@ -160,13 +182,15 @@ AI Customer Segmentation/
 └── README.md
 ```
 
+**Note:** The dataset directory is required for running the notebook but is not included in the GitHub repository. The saved model artifact is included for running the Streamlit dashboard without rebuilding the models.
+
 ## Installation and Execution
 
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd AI-Customer-Segmentation
+git clone https://github.com/rahulnongmeikapam/ai-customer-segmentation-recommendation.git
+cd ai-customer-segmentation-recommendation
 ```
 
 ### 2. Create a virtual environment
@@ -193,29 +217,37 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The dashboard will open in your browser, usually at:
+The dashboard will usually be available at:
 
 ```text
 http://localhost:8501
 ```
 
-### Dataset Setup
+### Dataset Setup for Notebook Execution
 
-The original dataset is not included in the repository. Download it from the UCI Machine Learning Repository and place the Excel file at:
+To run the Jupyter Notebook from the beginning:
+
+1. Download the Online Retail dataset from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/352/online+retail).
+2. Create a folder named `dataset` in the project root.
+3. Place the downloaded Excel file inside it.
+4. Ensure the filename is `Online Retail.xlsx`.
+
+The expected path is:
 
 ```text
 dataset/Online Retail.xlsx
 ```
 
-The saved model artifact is included separately in the `models/` directory for dashboard execution.
+The pre-generated model artifact is included separately in the `models/` directory for dashboard execution.
 
 ## Limitations
 
-- Recommendation accuracy is relatively low and requires further improvement.
-- Offline evaluation uses a sample of 300 eligible customers and a limited historical test period.
+- Recommendation precision and recall are relatively low and require further improvement.
+- Offline recommendation evaluation uses a sample of 300 eligible customers and a limited historical test period.
 - Recommendations are based on purchasing similarities rather than product descriptions or semantic understanding.
-- K-Means cluster assignments depend on the selected features and number of clusters.
-- Historical customer behaviour does not guarantee future purchasing behaviour.
+- K-Means cluster assignments depend on feature selection and the chosen number of clusters.
+- Historical purchasing behaviour does not guarantee future customer behaviour.
+- Evaluation results do not establish real-world business impact.
 
 ## Future Improvements
 
@@ -223,8 +255,8 @@ The saved model artifact is included separately in the `models/` directory for d
 - Improve recommendation ranking and personalisation.
 - Explore DBSCAN and alternative clustering approaches.
 - Incorporate product descriptions into recommendations.
-- Improve dashboard design and deployment.
-- Evaluate models on additional time periods.
+- Improve model evaluation using additional time periods.
+- Enhance dashboard design and deployment.
 
 ## Author
 
@@ -232,6 +264,8 @@ The saved model artifact is included separately in the `models/` directory for d
 
 B.Tech – Computer Science and Engineering (Artificial Intelligence)
 
+GitHub: https://github.com/rahulnongmeikapam
+
 ## Acknowledgements
 
-UCI Machine Learning Repository for providing the Online Retail dataset.
+Thanks to the UCI Machine Learning Repository for providing the Online Retail dataset used in this project.
