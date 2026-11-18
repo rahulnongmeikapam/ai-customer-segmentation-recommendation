@@ -4,6 +4,11 @@ An end-to-end Machine Learning project that analyses customer purchasing behavio
 
 The project also includes an interactive Streamlit dashboard for exploring customer profiles, purchase history, recommendations, and model evaluation results.
 
+
+## Live Demo
+
+[Launch Demo](https://ai-customer-segmentation-recommendation.streamlit.app/)
+
 ## Project Overview
 
 Understanding customer purchasing behaviour helps businesses improve customer engagement, retention, and product discovery.
