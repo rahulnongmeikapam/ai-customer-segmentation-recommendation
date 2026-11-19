@@ -12,13 +12,13 @@ The project also includes an interactive Streamlit dashboard for exploring custo
 ## Screenshots
 
 ### Dashboard
-![Dashboard]("E:\Projects\AI Customer Segmentation\screenshots\dashboard-overview.png")
+![Dashboard](screenshots\dashboard-overview.png)
 
 ### Customer Analysis
-![Customer Analysis]("E:\Projects\AI Customer Segmentation\screenshots\customer-analysis.png")
+![Customer Analysis](screenshots\customer-analysis.png)
 
 ### Segment Analytics
-![Segment Analytics]("E:\Projects\AI Customer Segmentation\screenshots\segment-analytics.png")
+![Segment Analytics](screenshots\segment-analytics.png)
 
 ## Project Overview
 
