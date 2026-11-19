@@ -9,16 +9,6 @@ The project also includes an interactive Streamlit dashboard for exploring custo
 
 [Launch Demo](https://ai-customer-segmentation-recommendation.streamlit.app/)
 
-## Screenshots
-
-### Dashboard
-![Dashboard](screenshots\dashboard-overview.png)
-
-### Customer Analysis
-![Customer Analysis](screenshots\customer-analysis.png)
-
-### Segment Analytics
-![Segment Analytics](screenshots\segment-analytics.png)
 
 ## Project Overview
 
