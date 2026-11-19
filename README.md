@@ -5,9 +5,25 @@ An end-to-end Machine Learning project that analyses customer purchasing behavio
 The project also includes an interactive Streamlit dashboard for exploring customer profiles, purchase history, recommendations, and model evaluation results.
 
 
-## Live Demo
 
-[Launch Demo](https://ai-customer-segmentation-recommendation.streamlit.app/)
+## 🚀 Live Demo
+
+[**Launch the Customer Segmentation Dashboard**](https://ai-customer-segmentation-recommendation.streamlit.app/)
+
+## 📸 Dashboard Preview
+
+**1. Dashboard Overview**
+
+![Dashboard Overview](screenshots/dashboard-overview.png)
+
+**2. Customer Analysis**
+
+![Customer Analysis](screenshots/customer-analysis.png)
+
+**3. Segment Analytics**
+
+![Segment Analytics](screenshots/segment-analytics.png)
+
 
 
 ## Project Overview
